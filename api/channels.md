@@ -335,7 +335,7 @@ app.channel('admins').leave(connection => {
 ```js
 // Returns a new channel with all connections of the user with `_id` 5
 const userFive = app.channel(app.channels)
-  .filter(connection => connection.user._id === 5);
+  .filter(connection => connection.user._id.toString() === 5);
 ```
 
 ### channel.send(data)
@@ -401,7 +401,7 @@ app.service('users').publish('created', (data, context) => {
   return [
     app.channel('admins'),
     app.channel(app.channels).filter(connection =>
-      connection.user._id === context.params.user._id
+      connection.user._id.toString() === context.params.user._id.toString()
     )
   ];
 });
